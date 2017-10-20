@@ -55,6 +55,7 @@ LOCAL_APPS = [
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'django_angular_template.middlewares.DisableCsrfCheck',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'soft_drf.utils.middlewares.AuthenticationMiddlewareJWT',
