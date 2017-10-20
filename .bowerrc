@@ -1,0 +1,10 @@
+{                                                                     
+    "name": "Angular Template",
+    "version": "0.1",
+    "authors": [
+        "al <angel.david.lagunas@gmail.com>"
+    ],
+    "description": "Template to work with AngularJS and Django Rest Framework",
+    "directory": "./angular/assets/bower_components/"
+}
+

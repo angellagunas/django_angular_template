@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from django_angular_template.views import IndexView
+
 from soft_drf.routing import urls as api_urls
 
 urlpatterns = [
+    url(r'^$', IndexView.as_view(), name="index_view"),
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls, namespace="api"))
 ]
