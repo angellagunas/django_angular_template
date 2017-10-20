@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
+import datetime
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -53,9 +54,9 @@ INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'soft_drf.utils.middlewares.AuthenticationMiddlewareJWT',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -124,8 +125,57 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DRF CONFIGURATIONS
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASES': (
+        'soft_drf.auth.authentication.JSONWebTokenAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': [],
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',
+        'rest_framework.parsers.MultiPartParser',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
+# JWT CONFIG
+JWT_AUTH = {
+    'JWT_ENCODE_HANDLER': (
+        'soft_drf.auth.utilities.jwt_encode_handler'
+    ),
+    'JWT_DECODE_HANDLER': (
+        'soft_drf.auth.utilities.jwt_decode_handler'
+    ),
+    'JWT_PAYLOAD_HANDLER': (
+        'soft_drf.auth.utilities.jwt_payload_handler'
+    ),
+    'JWT_PAYLOAD_GET_USER_ID_HANDLER': (
+        'soft_drf.auth.utilities.jwt_get_user_id_from_payload_handler'
+    ),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': (
+        'soft_drf.auth.utilities.jwt_response_payload_handler'
+    ),
+    'VJWT_ALGORITHM': 'HS256',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1800),
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_AUDIENCE': None,
+    'JWT_ISSUER': None
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SHOW_DOCUMENTATION = True
+TITLE_DOCUMENTATION = "Angular template"
