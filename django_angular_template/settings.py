@@ -48,7 +48,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'angular'
+    'angular',
+    'app.accounts'
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS

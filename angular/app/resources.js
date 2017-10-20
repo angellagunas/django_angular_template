@@ -5,6 +5,12 @@ angular.module('angular_template')
             return $resource('/api/v1/signin');
         }
     ])
+    .factory('Profile', [
+        '$resource',
+        function ($resource) {
+            return $resource('/api/v1/me');
+        }
+    ])
     .service('GlobalService', ["$http", "$state", "$localStorage", "$base64", "baseUrl", function($http, $state, $localStorage, $base64, baseUrl) {
         'ngInject';
         var logout;
