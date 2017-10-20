@@ -20,8 +20,6 @@ class CatalogViewSet(
     create_serializer_class = serializers.CatalogSerializer
     update_serializer_class = serializers.CatalogSerializer
 
-    permission_classes = []  # put your custom permissions here
-
     def get_queryset(self, *args, **kwargs):
         queryset = Catalog.objects.all()
         return queryset

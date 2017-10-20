@@ -20,8 +20,6 @@ class AreaViewSet(
     create_serializer_class = serializers.AreaSerializer
     update_serializer_class = serializers.AreaSerializer
 
-    permission_classes = []  # put your custom permissions here
-
     def get_queryset(self, *args, **kwargs):
         queryset = Area.objects.all()
         return queryset

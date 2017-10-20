@@ -20,8 +20,6 @@ class ItemViewSet(
     create_serializer_class = serializers.ItemSerializer
     update_serializer_class = serializers.ItemSerializer
 
-    permission_classes = []  # put your custom permissions here
-
     def get_queryset(self, *args, **kwargs):
         queryset = Item.objects.all()
         return queryset
