@@ -103,58 +103,45 @@ angular.module('angular_template').config([
         }
       }
     })
-   .state('admin.servers', {
-      url: '/servers',
+   .state('admin.catalogs', {
+      url: '/catalogs',
       ncyBreadcrumb: {
-        label: 'Servers /'
+        label: 'Catalogs /'
       },
       views: {
         "content@": {
-            templateUrl: $contentProvider.url('app/components/servers/partials/server-list.html'),
-            controller: 'ServerController',
-            controllerAs: 'server'
+            templateUrl: $contentProvider.url('app/components/catalogs/partials/catalog-list.html'),
+            controller: 'CatalogController',
+            controllerAs: 'catalog'
         }
       }
     })
-    .state('admin.servers.detail', {
-        url: '/:server_id/detail',
-        ncyBreadcrumb: {
-            label: 'Detail /'
-        },
-        views: {
-            "content@": {
-                templateUrl: $contentProvider.url('app/components/servers/partials/server-detail.html'),
-                controller: 'ServerDetailController',
-                controllerAs: 'server'
-            }
-        }
-    })
-    .state('admin.documentation', {
-      url: '/documentation',
+    .state('admin.areas', {
+      url: '/areas',
       ncyBreadcrumb: {
-        label: 'Documents /'
+        label: 'Areas /'
       },
       views: {
         "content@": {
-            templateUrl: $contentProvider.url('app/components/documentation/partials/home_documentation.html'),
-            controller: 'DocsController',
-            controllerAs: 'document'
+            templateUrl: $contentProvider.url('app/components/areas/partials/area-list.html'),
+            controller: 'AreaController',
+            controllerAs: 'area'
         }
       }
     })
-    .state('admin.documentation.detail', {
-        url: '/:document_id/detail',
-        ncyBreadcrumb: {
-            label: 'Detail /'
-        },
-        views: {
-            "content@": {
-                templateUrl: $contentProvider.url('app/components/documentation/partials/document-detail.html'),
-                controller: 'DocsDetailController',
-                controllerAs: 'document'
-            }
+    .state('admin.items', {
+      url: '/items',
+      ncyBreadcrumb: {
+        label: 'Items /'
+      },
+      views: {
+        "content@": {
+            templateUrl: $contentProvider.url('app/components/items/partials/item-list.html'),
+            controller: 'ItemController',
+            controllerAs: 'item'
         }
-    })
+      }
+    });
 
     return $urlRouterProvider.otherwise('/');
 }]);

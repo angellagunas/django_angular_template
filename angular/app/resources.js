@@ -11,6 +11,66 @@ angular.module('angular_template')
             return $resource('/api/v1/me');
         }
     ])
+    .factory('Catalog', [
+        '$resource',
+        function ($resource) {
+            return $resource(
+                '/api/v1/catalogs/:id',
+                {
+                    id: '@id'
+                },
+                {
+                    'query': {
+                        method: 'GET',
+                        isArray: true
+                    },
+                    'update': {
+                        method: 'patch'
+                    }
+                }
+            );
+        }
+    ])
+    .factory('Area', [
+        '$resource',
+        function ($resource) {
+            return $resource(
+                '/api/v1/areas/:id',
+                {
+                    id: '@id'
+                },
+                {
+                    'query': {
+                        method: 'GET',
+                        isArray: true
+                    },
+                    'update': {
+                        method: 'patch'
+                    }
+                }
+            );
+        }
+    ])
+    .factory('Item', [
+        '$resource',
+        function ($resource) {
+            return $resource(
+                '/api/v1/items/:id',
+                {
+                    id: '@id'
+                },
+                {
+                    'query': {
+                        method: 'GET',
+                        isArray: true
+                    },
+                    'update': {
+                        method: 'patch'
+                    }
+                }
+            );
+        }
+    ])
     .service('GlobalService', ["$http", "$state", "$localStorage", "$base64", "baseUrl", function($http, $state, $localStorage, $base64, baseUrl) {
         'ngInject';
         var logout;
@@ -18,9 +78,7 @@ angular.module('angular_template')
         
         logout = function() {
           delete $localStorage.token;
-          delete $localStorage.profileInfo;
-          delete $localStorage.placeInfo;
-          delete $localStorage.userId;
+          delete $localStorage.profile;
           $state.go('public.login');
         };
         
