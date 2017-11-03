@@ -99,3 +99,17 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# DBS
+*.sqlite
+*.sqlite3
+*.sql
+
+# vim
+*.swp
+
+# statics files
+/static
+
+# bower components
+/angular/assets/bower_components
